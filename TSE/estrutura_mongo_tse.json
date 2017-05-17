@@ -1,0 +1,24 @@
+db.createCollection("TSE")
+
+db.TSE.insert(
+	{	
+		"data_geracao": new Date(2017,05,07),
+		"ano_eleicao":"2014",
+		"cargo":"DEPUTADO_FEDERAL",
+		"turno":"1",
+		"UF": {
+				"SP":{
+						"municipio":{
+					     			"codigo_municipio":"0000",
+									"nome":"EUCLIDES DA CUNHA",
+										zona":{
+												"numero_zona":"330",
+												"candidato":"VALQUIRIA DI TATA CAMPOS OLIVEIRA",
+												"sigla_partido":"PTB",
+												"total_votos":"0"
+												}
+									}
+					}				
+				}
+	}
+)
