@@ -18,8 +18,9 @@ nosso produto/solução compara a percepção pública, ideais políticos e proj
 `Última atualização: 10/05/2017`
 
 ## API TSE
-O grupo ficou responsavel por análisar dados de votações por deputados federais por zonas em todo o Brasil apartir do ano de 2014. Para a Coleta dos dados, será utilizado a base dados da própria instituição que provem os dados em formato CSV. 
-* <strong>Site da Coleta dos dados</strong>: http://www.tse.jus.br/hotSites/pesquisas-eleitorais/candidatos.html
+O grupo ficou responsavel por análisar dados de votações por deputados federais por zonas eleitorais em todo o Brasil apartir do ano de 2014. Para a Coleta dos dados, será utilizado a base de dados da própria instituição que provem os dados em formato CSV. 
+* <strong>Site da Coleta dos dados</strong>: http://www.tse.jus.br/hotSites/pesquisas-eleitorais/resultados_anos/2014.html.
+* Base usada (até agora) Votação nominal por município e zona (formato ZIP).
 
 ## Integrantes
 Os Participantes que compoem o grupo, são:
@@ -34,27 +35,28 @@ Os Participantes que compoem o grupo, são:
 
 
 ## Metodologia de Trabalho
-O Desenvolvimento desse software segue as boas práticas de desenvolvimento com Scrum, agilizando processos e entregando conteúdo no menor tempo possível. Seguindo o cronograma:
+O Desenvolvimento desse projeto segue as boas práticas de desenvolvimento com Scrum, agilizando processos e entregando conteúdo no menor tempo possível. Seguindo o cronograma:
 * Reuniões de Sprint : Reunião para definia a proxima funcionalidade a ser implementada, realizada 15 em 15 dias.
 * Reuniões de Review: Realizada no final da implementação de cada funcionalidade.
-* Link do Trello para acompanhamento : https://trello.com/b/CBGbg5HX/radar-politico
-* App BrandStorming : http://realtimeboard.com
+* Link do Trello para acompanhamento : https://trello.com/b/CBGbg5HX/radar-politico;
+* App BrandStorming : http://realtimeboard.com;
+* Repositorio : https://github.com/guigows/RadarPolitico/tree/tse_developer/TSE;
 
 `Última atualização: 10/05/2017`
 
 
 ## Ferramentas Utilizadas
 * Software XAMMP - Ambiente PHP para rodar o script criado;
-* Mysql - Banco de Dados para salvar os arquivos csv em formato de tabelas;
-* MySql Workbench - Ferramenta para Visualizar as tabelas (Cli-mysql);
-* MongoDB - Banco de dados NoSQL onde iremos importar os arquivos já filtrados através do script PHP;
+* Mysql - Banco de Dados para salvar os arquivos csv no formato SQL;
+* Mysql Workbench - Ferramenta para Visualizar as tabelas (cli-mysql);
+* MongoDB - Banco de dados NoSQL onde iremos importar os arquivos gerados pelo script 'mysql_for_php.php'.
 
 `Última atualização: 17/05/2017`
 
 
 ## Passo a passo
 * Instalar o XAMPP.
-* Instalar o Mysql Workbench ou qualquer outra Cli-Mysql e criar as tabelas, exemplo:
+* Instalar o Mysql Workbench ou qualquer outra cli-Mysql e criar as tabelas, exemplo:
 
 ```
   CREATE TABLE db_tse.teste (
@@ -103,15 +105,16 @@ O Desenvolvimento desse software segue as boas práticas de desenvolvimento com 
 
 ```
 
-* Clonar o script php que tranforma os dados de SQL para JSON dentro da pasta 'htdocs' do XAMPP;
+* Clonar o script que está no repositório do git que tranforma os dados de SQL para JSON dentro da pasta 'htdocs' do XAMPP;
 
-* Execultar o XAMPP e abrir no navegador o script através do endereço: 'localhost/script_tse.php;
+* Execultar o XAMPP e abrir no navegador o script através do endereço: 'localhost/mysql_for_php.php' para a criação do arquivo JSON;
 
+* Execultar a importação do arquivo no mongodb;
 
 `Última atualização: 17/05/2017`
 
 
-## Para clonar o projeto para seu computador, use o git:
+## Para clonar o projeto, use o git:
 RadarPolitico:
 
 ```
