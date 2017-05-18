@@ -1,24 +1,27 @@
 db.createCollection("TSE")
 
 db.TSE.insert(
-	{	
-		"data_geracao": new Date(2017,05,07),
-		"ano_eleicao":"2014",
-		"cargo":"DEPUTADO_FEDERAL",
-		"turno":"1",
-		"UF": {
-				"SP":{
-						"municipio":{
-					     			"codigo_municipio":"0000",
-									"nome":"EUCLIDES DA CUNHA",
-										zona":{
-												"numero_zona":"330",
-												"candidato":"VALQUIRIA DI TATA CAMPOS OLIVEIRA",
-												"sigla_partido":"PTB",
-												"total_votos":"0"
-												}
-									}
-					}				
-				}
+	{
+	"hora_geracao":"03:39:26",
+	"ano_eleicao":"2014",
+	"cargo":"GOVERNADOR",
+	"turno":"1",
+	"uf":{
+		"AP":{
+			"municipio":{
+				"codigo_municipio":"06009",
+				"nome_municipio":"PRACU�BA",
+				"zona_eleitoral":{
+					"numero_zona":"1",
+					"nome_candidato":"GENIVAL CRUZ DE ARAUJO",
+					"nome_urna_candidato":"GENIVAL CRUZ",
+					"sigla_partido":"PSTU",
+					"nome_partido":"Partido Socialista dos Trabalhadores Unificado",
+					"total_votos":"2",
+					"desc_sit_cand_tot":"N�O ELEITO"
+					}
+			}
+		}
+	}
 	}
 )

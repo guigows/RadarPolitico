@@ -18,9 +18,8 @@ nosso produto/solução compara a percepção pública, ideais políticos e proj
 `Última atualização: 10/05/2017`
 
 ## API TSE
-O grupo ficou responsavel por análisar dados de votações por deputados federais por zonas eleitorais em todo o Brasil apartir do ano de 2014. Para a Coleta dos dados, será utilizado a base de dados da própria instituição que provem os dados em formato CSV. 
-* <strong>Site da Coleta dos dados</strong>: http://www.tse.jus.br/hotSites/pesquisas-eleitorais/resultados_anos/2014.html.
-* Base usada (até agora) Votação nominal por município e zona (formato ZIP).
+O grupo ficou responsavel por análisar dados de votações por deputados federais por zonas em todo o Brasil apartir do ano de 2014. Para a Coleta dos dados, será utilizado a base dados da própria instituição que provem os dados em formato CSV. 
+* <strong>Site da Coleta dos dados</strong>: http://www.tse.jus.br/hotSites/pesquisas-eleitorais/candidatos.html
 
 ## Integrantes
 Os Participantes que compoem o grupo, são:
@@ -35,31 +34,30 @@ Os Participantes que compoem o grupo, são:
 
 
 ## Metodologia de Trabalho
-O Desenvolvimento desse projeto segue as boas práticas de desenvolvimento com Scrum, agilizando processos e entregando conteúdo no menor tempo possível. Seguindo o cronograma:
+O Desenvolvimento desse software segue as boas práticas de desenvolvimento com Scrum, agilizando processos e entregando conteúdo no menor tempo possível. Seguindo o cronograma:
 * Reuniões de Sprint : Reunião para definia a proxima funcionalidade a ser implementada, realizada 15 em 15 dias.
 * Reuniões de Review: Realizada no final da implementação de cada funcionalidade.
-* Link do Trello para acompanhamento : https://trello.com/b/CBGbg5HX/radar-politico;
-* App BrandStorming : http://realtimeboard.com;
-* Repositorio : https://github.com/guigows/RadarPolitico/tree/tse_developer/TSE;
+* Link do Trello para acompanhamento : https://trello.com/b/CBGbg5HX/radar-politico
+* App BrandStorming : http://realtimeboard.com
 
 `Última atualização: 10/05/2017`
 
 
 ## Ferramentas Utilizadas
 * Software XAMMP - Ambiente PHP para rodar o script criado;
-* Mysql - Banco de Dados para salvar os arquivos csv no formato SQL;
-* Mysql Workbench - Ferramenta para Visualizar as tabelas (cli-mysql);
-* MongoDB - Banco de dados NoSQL onde iremos importar os arquivos gerados pelo script 'mysql_for_php.php'.
+* Mysql - Banco de Dados para salvar os arquivos csv em formato de tabelas;
+* MySql Workbench - Ferramenta para Visualizar as tabelas (Cli-mysql);
+* MongoDB - Banco de dados NoSQL onde iremos importar os arquivos já filtrados através do script PHP;
 
 `Última atualização: 17/05/2017`
 
 
 ## Passo a passo
 * Instalar o XAMPP.
-* Instalar o Mysql Workbench ou qualquer outra cli-Mysql e criar as tabelas, exemplo:
+* Instalar o Mysql Workbench ou qualquer outra Cli-Mysql e criar as tabelas, exemplo:
 
 ```
-  CREATE TABLE db_tse.teste (
+  CREATE TABLE db_tse.{NOMEDATABELA} (
   `DATA_GERACAO` varchar(255) COLLATE latin1_bin DEFAULT NULL,
   `HORA_GERACAO` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
   `ANO_ELEICAO` varchar(255) CHARACTER SET latin1 DEFAULT NULL,
@@ -97,24 +95,40 @@ O Desenvolvimento desse projeto segue as boas práticas de desenvolvimento com S
 *Salvar os arquivos CSV em algum diretorio e importar para o banco MySql, exemplo:
 
 ```
-	LOAD DATA LOCAL INFILE '/var/lib/mysql-files/teste.txt' INTO TABLE db_tse.teste
+	LOAD DATA LOCAL INFILE '{CAMINHO ONDE ESTA O SEU CSV OU TXT/EXEMPLO.txt}' INTO TABLE db_tse.{TABELACRIADA}
 	FIELDS TERMINATED BY ';'
 	OPTIONALLY ENCLOSED BY '"' 
 	LINES TERMINATED BY '\n'
 	IGNORE 1 LINES
 
 ```
+* Abrir o script e alterar o SELECT feito em SQL como os dados de campos e tabelas que você deseja alterar;
 
-* Clonar o script que está no repositório do git que tranforma os dados de SQL para JSON dentro da pasta 'htdocs' do XAMPP;
+* Copiar o script alterado que tranforma os dados de SQL para JSON dentro da pasta 'htdocs' do XAMPP;
 
-* Execultar o XAMPP e abrir no navegador o script através do endereço: 'localhost/mysql_for_php.php' para a criação do arquivo JSON;
+* Execultar o XAMPP e abrir no navegador o script através do endereço: 'localhost/mysql_for_php.php';
 
-* Execultar a importação do arquivo no mongodb;
+* Ao execultar o edereço no navegador, deverá automaticamente fazer o downlod de um novo arquivo 'TSE>JSON' com os dados já serializados no formato JSON, como no documento 'estrutura_mongo_tse.json';
 
-`Última atualização: 17/05/2017`
+* Inicie o servidor do mongo;
+
+* Inicie o mongo-cli e digite o comando para importar o arquivo: <strong>mongoimport --db db_tse --collection tse --type json --file tse.json --jsonArray</strong>
+
+* Ao final desse passo, você importou os dados para o mysql, fez o parse para JSON através do Script e importou para o mongo db, voce pode conferir através do cli-mongo como o comando <strong>show dbs</strong>.
 
 
-## Para clonar o projeto, use o git:
+`Última atualização: 18/05/2017`
+
+## Links interessantes para estudo ou resolver problemas:
+* https://www.digitalocean.com/community/tutorials/como-instalar-a-pilha-linux-apache-mysql-php-lamp-no-ubuntu-14-04-pt
+* https://mongodbwise.wordpress.com/2014/05/22/mongodb-guia-rapido/comment-page-1/
+* https://secure.php.net/manual/pt_BR/configuration.file.php
+* https://zaiste.net/posts/importing_json_into_mongodb/
+* http://profanderson.blog.etecarmine.com.br/json-criando-o-web-service/
+* http://jordankobellarz.github.io/php/mongodb/2015/08/14/usando-driver-mongodb-php.html
+* https://docs.mongodb.com/ecosystem/drivers/php/
+
+## Para clonar o projeto para seu computador, use o git:
 RadarPolitico:
 
 ```
